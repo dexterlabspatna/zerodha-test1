@@ -40,7 +40,7 @@ def order_place(symbol, exchange, transaction, quantity, price):
                                     price=price,
                                     variety=kite.VARIETY_REGULAR,
                                     order_type=kite.ORDER_TYPE_MARKET,
-                                    product=kite.PRODUCT_CNC)
+                                    product=kite.PRODUCT_NRML)
         logging.info("Order placed. ID is: {}".format(order_id))
     except Exception as e:
         logging.info("Order placement failed: {}".format(e))

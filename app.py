@@ -70,7 +70,7 @@ def webhook():
     data = json.loads(request.data)
 
     # ---testing--------------------
-    transaction = data["transaction_type"]
+    transaction = data['strategy']["transaction_type"].upper()
     # symbol = data['ticker']
     # exchange = data['exchange']
     # quantity = data['strategy']['order_contracts']

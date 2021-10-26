@@ -48,7 +48,7 @@ def order_place(symbol, exchange, transaction, quantity, price):
     return order_id
 
 
-@app.route("/")
+@app.route("/login")
 def hello_world():
     key = kitesettings.API_KEY
     # url = "https://kite.zerodha.com/connect/login?v=4&api_key="+key
@@ -61,6 +61,7 @@ def hello_world():
 
 @app.route("/welcome")
 def welcome():
+    print("WELCOME")
     return "<p>welcome</p>"
 
 

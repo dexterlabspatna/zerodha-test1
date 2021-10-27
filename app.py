@@ -46,7 +46,7 @@ def log():
     return "<p>log</p>"
 	
 @app.route('/btc', methods=['POST'])
-def log():
+def btc():
     print(request.data)
     return "<p>log</p>"
 

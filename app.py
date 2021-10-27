@@ -64,6 +64,11 @@ def welcome():
     print("WELCOME")
     return "<p>welcome</p>"
 
+@app.route('/log', methods=['POST'])
+def log():
+    print(request.data)
+    return "<p>welcome</p>"
+
 
 @app.route('/zerodhahook', methods=['POST'])
 def webhook():
@@ -72,19 +77,14 @@ def webhook():
 
     # ---testing--------------------
     transaction = data["transaction_type"].upper()
-    # symbol = data['ticker']
-    # exchange = data['exchange']
-    # quantity = data['strategy']['order_contracts']
-    # price = data['strategy']['order_price']
-    symbol = data['tradingsymbol']
-    exchange = data['exchange']
-    quantity = data['quantity']
-    price = data['price']
-    # result = order_place(symbol, exchange, transaction, quantity, price)
-    result = order_place(symbol, exchange, transaction, quantity, price)
-
-    print(exchange, "dddd")
-    print("------------------")
+    #symbol = data['tradingsymbol']
+    #exchange = data['exchange']
+    #quantity = data['quantity']
+    #price = data['price']
+    
+    #uncomment
+    #result = order_place(data['tradingsymbol'], data['exchange'], data["transaction_type"].upper(), data['quantity'], data['price'])
+    
     print(result)
 
     return{

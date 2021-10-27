@@ -67,6 +67,7 @@ def welcome():
 @app.route('/log', methods=['POST'])
 def log():
     print(request.data)
+    return "<p>log</p>"
 
 
 @app.route('/zerodhahook', methods=['POST'])

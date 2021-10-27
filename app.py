@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 kite = KiteConnect(kitesettings.API_KEY)
 
-def order_place(symbol, exchange, transaction, quantity, price):
+def order_place(order_id, symbol, exchange, transaction, quantity, price):
     kite.set_access_token(kitesettings.access_token)
 
     try:
@@ -44,7 +44,7 @@ def btc():
 def webhook():
     print(request.data)
     data = json.loads(request.data)
-    result = order_place(data['tradingsymbol'], data['exchange'], data["transaction_type"].upper(), data['quantity'], data['price'])
+    result = order_place('',data['tradingsymbol'], data['exchange'], data["transaction_type"].upper(), data['quantity'], data['price'])
     print(result)
     return{
         "code": "error",

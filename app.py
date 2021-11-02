@@ -35,11 +35,6 @@ def log():
     print(request.data)
     return "<p>log</p>"
 	
-@app.route('/btc', methods=['POST'])
-def btc():
-    print(request.data)
-    return "<p>log</p>"
-
 @app.route('/zerodhahook', methods=['POST'])
 def webhook():
     print(request.data)
@@ -49,24 +44,4 @@ def webhook():
     return{
         "code": "error",
         "message": "order"
-    }
-@app.route('/options', methods=['POST'])
-def webhook1():
-    print(request.data)
-    data = json.loads(request.data)
-    kite.set_access_token(kitesettings.access_token)
-
-    order_id = kite.place_order(tradingsymbol="NIFTY21NOV18200CE",
-                                exchange="NFO",
-                                transaction_type="BUY",
-                                quantity="50",
-                                price="0.0",
-                                variety=kite.VARIETY_REGULAR,
-                                order_type="SL-M",
-                                product=kite.PRODUCT_NRML,
-                                trigger_price=7)
-    print("Order placed. ID is: {}".format(order_id))
-    return{
-    "code": "error",
-    "message": "order"
     }

@@ -39,7 +39,7 @@ def log():
 def webhook():
     print(request.data)
     data = json.loads(request.data)
-    #result = order_place('',data['tradingsymbol'], data['exchange'], data["transaction_type"].upper(), data['quantity']*50, data['price'])
+    result = order_place('',data['tradingsymbol'], data['exchange'], data["transaction_type"].upper(), data['quantity']*50, data['price'])
     print(result)
     return{
         "code": "error",

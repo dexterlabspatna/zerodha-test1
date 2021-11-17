@@ -73,9 +73,9 @@ def webhook():
     else:
         qnt = 2
     if data["transaction_type"] == "buy":
-	TT = "SELL"
+        TT = "SELL"
     if data["transaction_type"] == "sell":
-	TT = "BUY"
+        TT = "BUY"
     result = order_place('',data['tradingsymbol'], data['exchange'], TT, qnt*50, data['price'])
     print(result)
     return{

@@ -6,7 +6,7 @@ Linux/AWS
 Open inbound for port 443
 sudo su
 export FLASK_APP=app.py
-flask run --host 0.0.0.0 --port 443
+nohup flask run --host 0.0.0.0 --port 443
 #windows/heruko
 To Run in local
 	set FLASK_APP = app.py

@@ -2,6 +2,12 @@
 download code
 https://github.com/dexterlabspatna/zerodha-test1.git
 
+Linux/AWS
+Open inbound for port 443
+sudo su
+export FLASK_APP=app.py
+flask run --host 0.0.0.0 --port 443
+#windows/heruko
 To Run in local
 	set FLASK_APP = app.py
 	python -m flask run

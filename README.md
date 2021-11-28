@@ -42,6 +42,9 @@ https://zerodha-test1.herokuapp.com/btc
 https://zerodha-test1.herokuapp.com/log
 https://zerodha-test1.herokuapp.com/welcome
 
+AWS
+http://52.204.244.0:443/welcome
+
 Alarm json
 
 {

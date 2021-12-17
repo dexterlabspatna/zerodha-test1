@@ -7,15 +7,14 @@ app = Flask(__name__)
 
 kite = KiteConnect(kitesettings.API_KEY)
 
-def order_place(order_id, symbol, exchange, transaction, quantity, price):
+def order_place(order_id, symbol, transaction, quantity):
     kite.set_access_token(kitesettings.access_token)
 
     try:
         order_id = kite.place_order(tradingsymbol=symbol,
-                                    exchange=exchange,
+                                    exchange="NFO",
                                     transaction_type=transaction,
                                     quantity=quantity,
-                                    price=price,
                                     variety=kite.VARIETY_REGULAR,
                                     order_type=kite.ORDER_TYPE_MARKET,
                                     product=kite.PRODUCT_NRML)
@@ -39,29 +38,14 @@ def log():
     print(Symbol)
     return "<p>log</p>"
 	
-@app.route('/futures', methods=['POST'])
-def webhook1():
-    print(request.data)
-    data = json.loads(request.data)
-    if data['quantity'] == "1":
-        qnt = 1
-    else:
-        qnt = 2
-    result = order_place('',data['tradingsymbol'], data['exchange'], data["transaction_type"].upper(), qnt*50, data['price'])
-    print(result)
-    return{
-        "code": "error",
-        "message": "order"
-    }
 @app.route('/optionsCE', methods=['POST'])
 def webhook2():
     print(request.data)
     data = json.loads(request.data)
-    if data['quantity'] == "1":
-        qnt = 1
-    else:
-        qnt = 2
-    result = order_place('',data['tradingsymbol'], data['exchange'], data["transaction_type"].upper(), qnt*50, data['price'])
+    if data["transaction_type"] == "buy":
+        rounded = (round(round(float(data['price']))/100)*100) - 200
+        Symbol= "NIFTY"+"21D23"+str(rounded)+"CE"
+    result = order_place('',Symbol, data["transaction_type"].upper(), int(data['quantity'])*50)
     print(result)
     return{
         "code": "error",
@@ -72,15 +56,14 @@ def webhook2():
 def webhook():
     print(request.data)
     data = json.loads(request.data)
-    if data['quantity'] == "1":
-        qnt = 1
-    else:
-        qnt = 2
     if data["transaction_type"] == "buy":
         TT = "SELL"
+        rounded = (round(round(float(data['price']))/100)*100) + 200
+        Symbol= "NIFTY"+"21D23"+str(rounded)+"PE"
     if data["transaction_type"] == "sell":
         TT = "BUY"
-    result = order_place('',data['tradingsymbol'], data['exchange'], TT, qnt*50, data['price'])
+
+    result = order_place('',Symbol, TT, int(data['quantity'])*50)
     print(result)
     return{
         "code": "error",

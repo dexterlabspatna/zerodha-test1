@@ -33,6 +33,10 @@ def welcome():
 @app.route('/log', methods=['POST'])
 def log():
     print(request.data)
+    data = data = json.loads(request.data)
+    rounded = (round(round(float(data['price']))/100)*100) + 200
+    Symbol= "NIFTY"+"21D23"+str(rounded)+"PE"
+    print(Symbol)
     return "<p>log</p>"
 	
 @app.route('/futures', methods=['POST'])

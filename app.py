@@ -44,7 +44,7 @@ def webhook2():
     data = json.loads(request.data)
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200
-        Symbol= "NIFTY"+"21D23"+str(rounded)+"CE"
+        Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
     result = order_place('',Symbol, data["transaction_type"].upper(), int(data['quantity'])*50)
     print(result)
     return{
@@ -59,7 +59,7 @@ def webhook():
     if data["transaction_type"] == "buy":
         TT = "SELL"
         rounded = (round(round(float(data['price']))/100)*100) + 200
-        Symbol= "NIFTY"+"21D23"+str(rounded)+"PE"
+        Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"PE"
     if data["transaction_type"] == "sell":
         TT = "BUY"
 

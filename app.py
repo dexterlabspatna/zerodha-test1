@@ -43,6 +43,7 @@ def log():
 	
 @app.route('/optionsCE', methods=['POST'])
 def webhook2():
+    global SymbolCE
     print(request.data)
     data = json.loads(request.data)
     if data["transaction_type"] == "buy":
@@ -57,6 +58,7 @@ def webhook2():
 
 @app.route('/optionsPE', methods=['POST'])
 def webhook():
+    global SymbolPE
     print(request.data)
     data = json.loads(request.data)
     if data["transaction_type"] == "buy":

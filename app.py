@@ -52,6 +52,7 @@ def webhook2():
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200
         SymbolCE= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
+    print(SymbolCE)
     result = order_place('',SymbolCE, data["transaction_type"].upper(), int(data['quantity'])*50)
     print(result)
     return{

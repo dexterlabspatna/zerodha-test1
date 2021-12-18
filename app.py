@@ -1,11 +1,10 @@
-from flask import Flask, request, jsonify, g
+from flask import Flask, request, jsonify
 import json
 import kitesettings
 from kiteconnect import KiteConnect
 import os
 app = Flask(__name__)
 
-g.Symbol = 'ggg'
 SymbolCE  ="ab"
 SymbolPE ="ab"
 
@@ -39,8 +38,8 @@ def log():
     data = data = json.loads(request.data)
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200
-        g.Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
-    print(g.Symbol)
+        kitesettings.Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
+    print(kitesettings.Symbol)
     return "<p>log</p>"
 	
 @app.route('/optionsCE', methods=['POST'])

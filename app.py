@@ -71,7 +71,7 @@ def webhook():
         SymbolPE= "NIFTY"+data["YrMnDt"]+str(rounded)+"PE"
     if data["transaction_type"] == "sell":
         TT = "BUY"
-
+    print(SymbolPE)
     result = order_place('',SymbolPE, TT, int(data['quantity'])*50)
     print(result)
     return{

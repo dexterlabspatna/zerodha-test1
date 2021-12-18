@@ -34,6 +34,7 @@ def welcome():
 
 @app.route('/log', methods=['POST'])
 def log():
+    global kitesettings.Symbol
     print(request.data)
     data = data = json.loads(request.data)
     if data["transaction_type"] == "buy":

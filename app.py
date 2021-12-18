@@ -5,6 +5,7 @@ from kiteconnect import KiteConnect
 import os
 app = Flask(__name__)
 
+Symbol = "ggg"
 SymbolCE  ="ab"
 SymbolPE ="ab"
 

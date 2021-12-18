@@ -5,6 +5,9 @@ from kiteconnect import KiteConnect
 import os
 app = Flask(__name__)
 
+SymbolCE  ="ab"
+SymbolPE ="ab"
+
 kite = KiteConnect(kitesettings.API_KEY)
 
 def order_place(order_id, symbol, transaction, quantity):
@@ -35,7 +38,6 @@ def log():
     data = data = json.loads(request.data)
     rounded = (round(round(float(data['price']))/100)*100) + 200
     Symbol= "NIFTY"+"21D23"+str(rounded)+"PE"
-    print(Symbol)
     return "<p>log</p>"
 	
 @app.route('/optionsCE', methods=['POST'])
@@ -44,8 +46,9 @@ def webhook2():
     data = json.loads(request.data)
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200
-        Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
-    result = order_place('',Symbol, data["transaction_type"].upper(), int(data['quantity'])*50)
+        SymbolCE= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
+    print(
+    result = order_place('',SymbolCE, data["transaction_type"].upper(), int(data['quantity'])*50)
     print(result)
     return{
         "code": "error",
@@ -59,11 +62,11 @@ def webhook():
     if data["transaction_type"] == "buy":
         TT = "SELL"
         rounded = (round(round(float(data['price']))/100)*100) + 200
-        Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"PE"
+        SymbolPE= "NIFTY"+data["YrMnDt"]+str(rounded)+"PE"
     if data["transaction_type"] == "sell":
         TT = "BUY"
 
-    result = order_place('',Symbol, TT, int(data['quantity'])*50)
+    result = order_place('',SymbolPE, TT, int(data['quantity'])*50)
     print(result)
     return{
         "code": "error",

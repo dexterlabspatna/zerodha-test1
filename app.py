@@ -38,6 +38,7 @@ def log():
     data = data = json.loads(request.data)
     rounded = (round(round(float(data['price']))/100)*100) + 200
     Symbol= "NIFTY"+"21D23"+str(rounded)+"PE"
+    print(Symbol)
     return "<p>log</p>"
 	
 @app.route('/optionsCE', methods=['POST'])
@@ -47,7 +48,6 @@ def webhook2():
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200
         SymbolCE= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
-    print(
     result = order_place('',SymbolCE, data["transaction_type"].upper(), int(data['quantity'])*50)
     print(result)
     return{

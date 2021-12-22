@@ -5,9 +5,9 @@ from kiteconnect import KiteConnect
 import os
 app = Flask(__name__)
 
-Symbol = "aa"
-SymbolCE  ="ab"
-SymbolPE ="ab"
+Symbol
+SymbolCE
+SymbolPE
 
 kite = KiteConnect(kitesettings.API_KEY)
 
@@ -18,7 +18,7 @@ def order_place(order_id, symbol, transaction, quantity):
         order_id = kite.place_order(tradingsymbol=symbol,
                                     exchange="NFO",
                                     transaction_type=transaction,
-                                    quantity=quantity,
+                                    quantity=quantity,price=0.0,
                                     variety=kite.VARIETY_REGULAR,
                                     order_type=kite.ORDER_TYPE_MARKET,
                                     product=kite.PRODUCT_NRML)

@@ -42,6 +42,8 @@ def log():
         rounded = (round(round(float(data['price']))/100)*100) - 200
         Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
     print(Symbol)
+    qnt = int(data['quantity'])*50
+    print(qnt)
     return "<p>log</p>"
 	
 @app.route('/optionsCE', methods=['POST'])

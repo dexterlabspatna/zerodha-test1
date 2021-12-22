@@ -32,7 +32,7 @@ def welcome():
 @app.route('/log', methods=['POST'])
 def log():
     print(request.data)
-    Symbol
+    global Symbol
     data = data = json.loads(request.data)
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200

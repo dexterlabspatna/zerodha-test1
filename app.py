@@ -5,10 +5,6 @@ from kiteconnect import KiteConnect
 import os
 app = Flask(__name__)
 
-Symbol
-SymbolCE
-SymbolPE
-
 kite = KiteConnect(kitesettings.API_KEY)
 
 def order_place(order_id, symbol, transaction, quantity):
@@ -35,8 +31,8 @@ def welcome():
 
 @app.route('/log', methods=['POST'])
 def log():
-    global Symbol
     print(request.data)
+    Symbol
     data = data = json.loads(request.data)
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200

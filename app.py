@@ -3,7 +3,7 @@ import json
 import kitesettings
 from kiteconnect import KiteConnect
 import os
-app = Flask(__name__
+app = Flask(__name__)
 
 kite = KiteConnect(kitesettings.API_KEY)
 

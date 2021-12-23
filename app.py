@@ -3,9 +3,7 @@ import json
 import kitesettings
 from kiteconnect import KiteConnect
 import os
-app = Flask(__name__)
-
-global Symbol
+app = Flask(__name__
 
 kite = KiteConnect(kitesettings.API_KEY)
 
@@ -38,6 +36,11 @@ def log():
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200
         Symbol= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
+        f = open("CE.txt", "w")
+        f.write(Symbol)
+        f.close()
+    f = open("CE.txt", "r")
+    Symbol = f.read()
     print(Symbol)
     qnt = int(data['quantity'])*50
     print(qnt)
@@ -45,14 +48,19 @@ def log():
 	
 @app.route('/optionsCE', methods=['POST'])
 def webhook2():
-    global SymbolCE
     print(request.data)
     data = json.loads(request.data)
     if data["transaction_type"] == "buy":
         rounded = (round(round(float(data['price']))/100)*100) - 200
         SymbolCE= "NIFTY"+data["YrMnDt"]+str(rounded)+"CE"
+        f = open("CE.txt", "w")
+        f.write(SymbolCE)
+        f.close()
     print(SymbolCE)
-    result = order_place('',SymbolCE, data["transaction_type"].upper(), int(data['quantity'])*50)
+    f = open("CE.txt","r")
+    Symbol = f.read()
+    f.close()
+    result = order_place('',Symbol, data["transaction_type"].upper(), int(data['quantity'])*50)
     print(result)
     return{
         "code": "error",
@@ -61,17 +69,22 @@ def webhook2():
 
 @app.route('/optionsPE', methods=['POST'])
 def webhook():
-    global SymbolPE
     print(request.data)
     data = json.loads(request.data)
     if data["transaction_type"] == "buy":
         TT = "SELL"
         rounded = (round(round(float(data['price']))/100)*100) + 200
         SymbolPE= "NIFTY"+data["YrMnDt"]+str(rounded)+"PE"
+        f = open("PE.txt", "w")
+        f.write(SymbolPE)
+        f.close()
     if data["transaction_type"] == "sell":
         TT = "BUY"
     print(SymbolPE)
-    result = order_place('',SymbolPE, TT, int(data['quantity'])*50)
+    f = open("PE.txt","r")
+    Symbol = f.read()
+    f.close()
+    result = order_place('',Symbol, TT, int(data['quantity'])*50)
     print(result)
     return{
         "code": "error",

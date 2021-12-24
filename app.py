@@ -80,7 +80,6 @@ def webhook():
         f.close()
     if data["transaction_type"] == "sell":
         TT = "BUY"
-    print(SymbolPE)
     f = open("PE.txt","r")
     Symbol = f.read()
     f.close()

@@ -56,7 +56,6 @@ def webhook2():
         f = open("CE.txt", "w")
         f.write(SymbolCE)
         f.close()
-    print(SymbolCE)
     f = open("CE.txt","r")
     Symbol = f.read()
     f.close()
